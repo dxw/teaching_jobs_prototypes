@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Teaching Jobs
+{% endblock %}
+
+{% set serviceName %}
+
+{% endset%}
+
+{% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+{% from "button/macro.njk" import govukButton %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: "Education, training and skills",
+        href: "#"
+      },
+      {
+        text: "Teaching and leadership",
+        href: "#"
+      },
+      {
+        text: "List a teaching job at your school"
+      }
+    ]
+  }) }}
+
+  <div class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl">Give feedback</h1>
+
+        {# <h2 class="govuk-heading-l">Overall, how did you feel about the service you received today?</h2> #}
+
+        {% from "input/macro.njk" import govukInput %}
+
+        {% from 'radios/macro.njk' import govukRadios %}
+
+        {{ govukRadios({
+          idPrefix: "feedback",
+          name: "feedback",
+          fieldset: {
+            legend: {
+              text: 'Overall, how did you feel about the service you received today?',
+              isPageHeading: true,
+              classes: 'govuk-fieldset__legend--l govuk-!-margin-bottom-6'
+            }
+          },
+          items: [
+            {
+              value: "very-satisfied",
+              text: "Very satisfied"
+            },
+            {
+              value: "satisfied",
+              text: "Satisfied"
+            },
+            {
+              value: "neither-satisfied-or-dissatisfied",
+              text: "Neither satisfied or dissatisfied"
+            },
+            {
+              value: "dissatisfied",
+              text: "Dissatisfied"
+            },
+            {
+              value: "very-dissatisfied",
+              text: "Very dissatisfied"
+            }
+          ]
+        }) }}
+
+        {% from "textarea/macro.njk" import govukTextarea %}
+
+        {{ govukTextarea({
+          name: "how-could-we-improve-this-service",
+          id: "how-could-we-improve-this-service",
+          label: {
+            text: "How could we improve this service?"
+          },
+          hint: {
+            text: "Limit is 200 characters. Please don't include any personal or financial information, for example your National Insurance or credit card numbers."
+          }
+        }) }}
+
+        {% from "button/macro.njk" import govukButton %}
+
+        {{ govukButton({
+          text: "Send feedback"
+        }) }}
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
